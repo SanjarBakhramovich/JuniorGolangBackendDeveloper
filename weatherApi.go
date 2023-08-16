@@ -15,7 +15,7 @@ type WeatherResponse struct {
 }
 
 func main() {
-	apiKey := "75686baa4ffc8898ad84046eaf112d8c"
+	apiKey := "GitGuardian"
 	cityName := "Nukus" // Replace with the name of your hometown
 
 	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", cityName, apiKey)
