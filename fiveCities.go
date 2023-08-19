@@ -44,7 +44,7 @@ func getWeather(cityID string, apiKey string) (WeatherResponse, error) {
 }
 
 func main() {
-	apiKey := "75686baa4ffc8898ad84046eaf112d8c"
+	apiKey := "GitGuardian"
 
 	cities := map[string]string{
 		"Nukus":     "601294",
