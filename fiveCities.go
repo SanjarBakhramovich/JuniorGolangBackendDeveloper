@@ -9,14 +9,14 @@ import (
 
 type WeatherResponse struct {
 	Main struct {
-		Temperature float64 `json:"temp"`     // Temperature in Kelvin
-		Humidity    int     `json:"humidity"` // Humidity in %
+		Temperature float64 `json:"temp"`     // Температура в Кельвинах
+		Humidity    int     `json:"humidity"` // Влажность в %
 	} `json:"main"`
 	Wind struct {
-		Speed float64 `json:"speed"` // Wind speed in meters per second
+		Speed float64 `json:"speed"` // Скорость ветра метр в секунду
 	} `json:"wind"`
 	Clouds struct {
-		All int `json:"all"` // Cloudiness in %
+		All int `json:"all"` // Облачность в %
 	} `json:"clouds"`
 }
 
