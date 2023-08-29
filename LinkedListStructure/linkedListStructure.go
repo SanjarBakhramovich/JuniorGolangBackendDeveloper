@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Определение структуры для узла двусвязного списка
 type Node struct {
 	Prev *Node
@@ -7,6 +9,16 @@ type Node struct {
 	Data interface{}
 }
 
+// NewNode создает и возвращает новый узел двусвязного списка с указанными данными.
+// Параметры:
+//
+//	prev: Указатель на предыдущий узел.
+//	next: Указатель на следующий узел.
+//	data: Данные, которые будут храниться в узле.
+//
+// Возвращает:
+//
+//	Указатель на созданный узел.
 func NewNode(prev *Node, next *Node, data interface{}) *Node {
 	var node Node
 	node.Prev = prev
@@ -14,20 +26,6 @@ func NewNode(prev *Node, next *Node, data interface{}) *Node {
 	node.Data = data
 
 	return &node
-}
-
-func main() {
-	// var n1 Node
-	// var n2 Node
-	// val := 1
-	// node1 := Constructor(&n1, &n2, val)
-
-	// node2 := Node{
-	// 	Prev: &n1,
-	// 	Next: &n2,
-	// 	Data: val,
-	// }
-
 }
 
 // Определение структуры для двусвязного списка
@@ -70,9 +68,16 @@ func (list *DoublyLinkedList) Find(data interface{}) *Node {
 	return nil
 }
 
-// Метод для удаления узла с определенными данными из списка
+// Remove удаляет первый узел с указанными данными из двусвязного списка, если он существует.
+// Если узел с указанными данными не найден, ничего не происходит.
+// Параметры:
+//
+//	data: Данные, по которым будет производиться поиск и удаление узла.
 func (list *DoublyLinkedList) Remove(data interface{}) {
+	// Находим узел для удаления
 	nodeToRemove := list.Find(data)
+
+	// Если узел не найден, завершаем выполнение
 	if nodeToRemove == nil {
 		return
 	}
@@ -81,37 +86,88 @@ func (list *DoublyLinkedList) Remove(data interface{}) {
 	if nodeToRemove.Prev != nil {
 		nodeToRemove.Prev.Next = nodeToRemove.Next
 	} else {
+		// Если удаляется головной узел, обновляем голову списка
 		list.Head = nodeToRemove.Next
 	}
 
 	if nodeToRemove.Next != nil {
 		nodeToRemove.Next.Prev = nodeToRemove.Prev
 	} else {
+		// Если удаляется хвостовой узел, обновляем хвост списка
 		list.Tail = nodeToRemove.Prev
 	}
 }
 
-// func main() {
-// 	// Создание нового двусвязного списка
-// 	linkedList := NewDoublyLinkedList()
-// 	linkedList.Add(1)
-// 	linkedList.Add(2)
-// 	linkedList.Add(3)
+func main() {
+	// Создание нового двусвязного списка
+	linkedList := NewDoublyLinkedList()
+	linkedList.Add(1)
+	linkedList.Add(2)
+	linkedList.Add(3)
 
-// 	// Поиск узла с данными 2 в списке
-// 	foundNode := linkedList.Find(2)
-// 	if foundNode != nil {
-// 		fmt.Println(foundNode.Data)
-// 	} else {
-// 		fmt.Println("Node not found")
-// 	}
+	// Поиск узла с данными 2 в списке
+	foundNode := linkedList.Find(2)
+	if foundNode != nil {
+		fmt.Println(foundNode.Data)
+	} else {
+		fmt.Println("Node not found")
+	}
 
-// 	// Удаление узла с данными 2 из списка
-// 	linkedList.Remove(2)
-// 	foundNode = linkedList.Find(2)
-// 	if foundNode != nil {
-// 		fmt.Println(foundNode.Data)
-// 	} else {
-// 		fmt.Println("Node not found")
-// 	}
-// }
+	// Удаление узла с данными 2 из списка
+	linkedList.Remove(2)
+	foundNode = linkedList.Find(2)
+	if foundNode != nil {
+		fmt.Println(foundNode.Data)
+	} else {
+		fmt.Println("Node not found")
+	}
+}
+
+`
+Шаг 1: Создание нового пустого двусвязного списка
+   linkedList
+   +-------+
+   |  Head | ---> nil
+   +-------+
+   |  Tail | ---> nil
+   +-------+
+
+Шаг 2: Добавление элемента 1 в список
+   linkedList
+   +-------+
+   |  Head | ---> Node1 (1)
+   +-------+
+   |  Tail | ---> Node1 (1)
+   +-------+
+
+Шаг 3: Добавление элемента 2 в список
+   linkedList
+   +-------+
+   |  Head | ---> Node1 (1)
+   +-------+
+   |  Tail | ---> Node2 (2)
+   +-------+
+
+Шаг 4: Добавление элемента 3 в список
+   linkedList
+   +-------+
+   |  Head | ---> Node1 (1)
+   +-------+
+   |  Tail | ---> Node3 (3)
+   +-------+
+
+Шаг 5: Поиск узла с данными 2 в списке
+   Результат: Найден узел с данными 2
+
+Шаг 6: Удаление узла с данными 2 из списка
+   linkedList
+   +-------+
+   |  Head | ---> Node1 (1)
+   +-------+
+   |  Tail | ---> Node3 (3)
+   +-------+
+
+Шаг 7: Поиск узла с данными 2 в списке после удаления
+   Результат: Узел не найден
+
+`
