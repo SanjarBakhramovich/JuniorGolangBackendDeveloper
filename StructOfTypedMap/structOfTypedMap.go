@@ -35,3 +35,8 @@ func main() {
 	intMap.Remove("two")
 	fmt.Println(intMap.Get("two"))
 }
+
+//Написать Struct of slice without using slice
+// Struct should include cap, len, pointer to arr
+// cap of array should be assigned by const
+// major methods should be add, delete, and binSearch [CRUD]
