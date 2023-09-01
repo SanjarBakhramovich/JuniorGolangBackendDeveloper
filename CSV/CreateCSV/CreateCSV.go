@@ -14,7 +14,7 @@ func main() {
 	defer file.Close()
 
 	writer := csv.NewWriter(file)
-	defer writer.Flush()// Закрытие файла будет выполнено при выходе из функции
+	defer writer.Flush() // Закрытие файла будет выполнено при выходе из функции
 
 	header := []string{"Name", "Surname", "Age"}
 	err = writer.Write(header)
@@ -34,15 +34,14 @@ func main() {
 		panic(err)
 	}
 
-	writer.Flush()// Сброс буфера и запись данных при выходе из функции
-	
+	writer.Flush() // Сброс буфера и запись данных при выходе из функции
+
 	if err := writer.Error(); err != nil {
 		panic(err)
 	}
 }
 
-
-`
+/*
 +----------------------------------------------------+
 |           example.csv                             |
 +------------+--------------+-----------------------+
@@ -52,4 +51,4 @@ func main() {
 |  Somebody  |  Somebodiev  |          00           |
 +------------+--------------+-----------------------+
 
-`
+*/
