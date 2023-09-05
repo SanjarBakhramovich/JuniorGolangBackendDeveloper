@@ -38,7 +38,7 @@ func binSearch(arr *[arrCap]int, length, target int) int {
 // Добавить Create = add
 // что бы добавить новую цифру нужно чекну заполнен ли массив return true false
 // Нужен метод исползующий стракт
-func (s StructOfArr) add(num int) bool {
+func (s *StructOfArr) add(num int) bool {
 	if s.length >= s.cap {
 		return false
 	}
@@ -58,7 +58,7 @@ func main() {
 	}
 
 	var cifra int
-	fmt.Print("Введите целую цифру от 0-9\n")
+	fmt.Print("Введите целую цифру от 0-9 для поиска в массиве\n")
 	fmt.Scan(&cifra)
 
 	res := binSearch(arry.arr, arry.length, cifra)
@@ -70,11 +70,24 @@ func main() {
 	}
 
 	fmt.Println(arr)
-	fmt.Println("Что бы добавить цифру напишите цифру 1, что бы удалить, цифру 0")
-	var addDel int
-	fmt.Scan(addDel)
-	if addDel == 1 {
+	fmt.Printf("\nЧто бы добавить цифру к массиву напишите цифру 1,\nчто бы удалить, цифру 0\n")
+	//
+	var addOrDelete int
+	fmt.Scan(&addOrDelete)
+	//
 
+	if addOrDelete == 1 {
+		fmt.Printf("Напишите цифру которую хотите добавить\n")
+		var newInt int
+		fmt.Scan(&newInt)
+		addNumArr := arry.add(newInt)
+		// fmt.Println(addNumArr)
+		if addNumArr {
+			fmt.Printf("Цифра %d добавлена в массив\n", newInt)
+			fmt.Println(arry.arr)
+		} else {
+			fmt.Println("Массив полон, нельзя добавить цифру")
+		}
 	} else {
 
 	}
