@@ -33,7 +33,7 @@ func binSearch(arr *[arrCap]int, length, target int) int {
 		}
 	}
 	// выход из лупа
-	return -1 //если цифра не найдена возвращает -1 (типо ошибку)
+	return -1 //если цифра не найдена возвращает -1 (ошибку)
 }
 
 func main() {
