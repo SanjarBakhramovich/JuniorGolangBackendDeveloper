@@ -1,6 +1,5 @@
 //Написать Struct of slice without using slice
 // Struct should include cap, len, pointer to arr
-
 // cap of array should be assigned by const
 
 // major methods should be add, delete, and binSearch [CRUD]
@@ -36,6 +35,19 @@ func binSearch(arr *[arrCap]int, length, target int) int {
 	return -1 //если цифра не найдена возвращает -1 (ошибку)
 }
 
+// Добавить Create = add
+// что бы добавить новую цифру нужно чекну заполнен ли массив return true false
+// Нужен метод исползующий стракт
+func (s StructOfArr) add(num int) bool {
+	if s.length >= s.cap {
+		return false
+	}
+
+	s.arr[s.length] = num
+	s.length++
+	return true
+}
+
 func main() {
 
 	arr := [arrCap]int{4, 5, 6, 7}
@@ -56,4 +68,19 @@ func main() {
 	} else {
 		fmt.Printf("Ваша цифра %d не найдена\n", cifra)
 	}
+
+	fmt.Println(arr)
+	fmt.Println("Что бы добавить цифру напишите цифру 1, что бы удалить, цифру 0")
+	var addDel int
+	fmt.Scan(addDel)
+	if addDel == 1 {
+
+	} else {
+
+	}
+	// Добавить Create = add
+	// Delete = delete
+	// Update
+	// Read
+
 }
