@@ -6,7 +6,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 const arrCap = 4
 
@@ -35,6 +37,18 @@ func binSearch(arr *[arrCap]int, length, target int) int {
 	return -1 //если цифра не найдена возвращает -1 (ошибку)
 }
 
+// Бабл сорт
+// time complexity n^2 - 2 цикла, space O(1)
+func (s *StructOfArr) sort() {
+	for i := 0; i < s.length-1; i++ {
+		for j := 0; j < s.length-i-1; j++ {
+			if s.arr[j] > s.arr[j+1] {
+				s.arr[j], s.arr[j+1] = s.arr[j+1], s.arr[j]
+			}
+		}
+	}
+}
+
 // Добавить Create = add
 // что бы добавить новую цифру нужно чекну заполнен ли массив return true false
 // Нужен метод исползующий стракт
@@ -60,7 +74,10 @@ func main() {
 	var cifra int
 	fmt.Print("Введите целую цифру от 0-9 для поиска в массиве\n")
 	fmt.Scan(&cifra)
+	//
+	// implement sort
 
+	//
 	res := binSearch(arry.arr, arry.length, cifra)
 
 	if res != -1 {
