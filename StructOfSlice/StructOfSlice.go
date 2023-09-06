@@ -1,6 +1,6 @@
-//Написать Struct of slice without using slice
-// Struct should include cap, len, pointer to arr
-// cap of array should be assigned by const
+//Написать Struct of slice without using slice ✅
+// Struct should include cap, len, pointer to arr ✅
+// cap of array should be assigned by const ✅
 
 // major methods should be add, delete, and binSearch [CRUD]
 
@@ -37,8 +37,8 @@ func binSearch(arr *[arrCap]int, length, target int) int {
 	return -1 //если цифра не найдена возвращает -1 (ошибку)
 }
 
-// Бабл сорт
-// time complexity n^2 - 2 цикла, space O(1)
+// Бабл сорт implemented ✅
+// time complexity n^2 - 2 цикла, space O(1) - не требует лишней памяти, все объявления по 1
 func (s *StructOfArr) sort() {
 	for i := 0; i < s.length-1; i++ {
 		for j := 0; j < s.length-i-1; j++ {
@@ -49,9 +49,11 @@ func (s *StructOfArr) sort() {
 	}
 }
 
-// Добавить Create = add
-// что бы добавить новую цифру нужно чекну заполнен ли массив return true false
-// Нужен метод исползующий стракт
+//
+
+// Добавить Create = add ✅
+// что бы добавить новую цифру нужно чекнуть, заполнен ли массив return true false ✅
+// Нужен метод исползующий стракт ✅
 func (s *StructOfArr) add(num int) bool {
 	if s.length >= s.cap {
 		return false
@@ -75,7 +77,6 @@ func main() {
 	fmt.Print("Введите целую цифру от 0-9 для поиска в массиве\n")
 	fmt.Scan(&cifra)
 	//
-	// implement sort
 
 	//
 	res := binSearch(arry.arr, arry.length, cifra)
@@ -94,23 +95,28 @@ func main() {
 	//
 
 	if addOrDelete == 1 {
+
 		fmt.Printf("Напишите цифру которую хотите добавить\n")
 		var newInt int
 		fmt.Scan(&newInt)
+		//
+		if arry.add(newInt) {
+			fmt.Println("Массив полон, нельзя добавить цифру")
+		} else {
+			fmt.Printf("Цифра %d добавлена в массив\n", newInt)
+			fmt.Println(arry.arr)
+		}
+		//
 		addNumArr := arry.add(newInt)
 		// fmt.Println(addNumArr)
 		if addNumArr {
 			fmt.Printf("Цифра %d добавлена в массив\n", newInt)
 			fmt.Println(arry.arr)
-		} else {
-			fmt.Println("Массив полон, нельзя добавить цифру")
 		}
-	} else {
-
 	}
-	// Добавить Create = add
-	// Delete = delete
-	// Update
-	// Read
+	// Добавить Create = add 🔍
+	// Delete = delete 🔍
+	// Update 🔍
+	// Read 🔍
 
 }
