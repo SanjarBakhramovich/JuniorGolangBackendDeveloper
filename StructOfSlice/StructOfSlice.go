@@ -7,70 +7,18 @@
 package main
 
 import (
+	"JuniorSpecMod/StructOfSlice/slicePckg"
 	"fmt"
 )
 
-const arrCap = 4
-
-type StructOfArr struct {
-	length int
-	cap    int
-	arr    *[arrCap]int
-}
-
-func binSearch(arr *[arrCap]int, length, target int) int {
-	low := 0
-	high := length - 1
-
-	for low <= high {
-		mid := low + (high-low)/2 //идёт в центр
-
-		if arr[mid] == target {
-			return mid // если нашёл возвращает
-		} else if arr[mid] < target {
-			low = mid + 1 // идёт вправо
-		} else {
-			high = mid - 1 // идёт влево
-		}
-	}
-	// выход из лупа
-	return -1 //если цифра не найдена возвращает -1 (ошибку)
-}
-
-// Бабл сорт implemented ✅
-// time complexity n^2 - 2 цикла, space O(1) - не требует лишней памяти, все объявления по 1
-func (s *StructOfArr) sort() {
-	for i := 0; i < s.length-1; i++ {
-		for j := 0; j < s.length-i-1; j++ {
-			if s.arr[j] > s.arr[j+1] {
-				s.arr[j], s.arr[j+1] = s.arr[j+1], s.arr[j]
-			}
-		}
-	}
-}
-
-//
-
-// Добавить Create = add ✅
-// что бы добавить новую цифру нужно чекнуть, заполнен ли массив return true false ✅
-// Нужен метод исползующий стракт ✅
-func (s *StructOfArr) add(num int) bool {
-	if s.length >= s.cap {
-		return false
-	}
-
-	s.arr[s.length] = num
-	s.length++
-	return true
-}
-
+// MAIN
 func main() {
 
-	arr := [arrCap]int{4, 5, 6, 7}
-	arry := &StructOfArr{
-		length: 3,
-		cap:    arrCap,
-		arr:    &arr,
+	arr := [slicePckg.ArrCap]int{4, 5, 6, 7}
+	arry := &slicePckg.StructOfArr{
+		Length: 3,
+		Cap:    slicePckg.ArrCap,
+		Arr:    &arr,
 	}
 
 	var cifra int
@@ -79,7 +27,7 @@ func main() {
 	//
 
 	//
-	res := binSearch(arry.arr, arry.length, cifra)
+	res := slicePckg.BinSearch(arry.Arr, arry.Length, cifra)
 
 	if res != -1 {
 		fmt.Printf("\nВаша цифра %d находится в индексе %d\n", cifra, res)
@@ -100,18 +48,18 @@ func main() {
 		var newInt int
 		fmt.Scan(&newInt)
 		//
-		if arry.add(newInt) {
+		if arry.Add(newInt) {
 			fmt.Println("Массив полон, нельзя добавить цифру")
 		} else {
 			fmt.Printf("Цифра %d добавлена в массив\n", newInt)
-			fmt.Println(arry.arr)
+			fmt.Println(arry.Arr)
 		}
 		//
-		addNumArr := arry.add(newInt)
+		addNumArr := arry.Add(newInt)
 		// fmt.Println(addNumArr)
 		if addNumArr {
 			fmt.Printf("Цифра %d добавлена в массив\n", newInt)
-			fmt.Println(arry.arr)
+			fmt.Println(arry.Arr)
 		}
 	}
 	// Добавить Create = add 🔍
@@ -120,3 +68,10 @@ func main() {
 	// Read 🔍
 
 }
+
+// Мэйн зделать отдельным файлом
+// Конструктор (вызывать конструктор через мэйн)
+// package slice отдельный создать
+// импортировать slice в main
+// пользователь пишет getSlice
+// Методы зделать публичными
