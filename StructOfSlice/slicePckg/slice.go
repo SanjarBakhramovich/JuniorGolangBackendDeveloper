@@ -26,7 +26,7 @@ func BinSearch(arr *[ArrCap]int, Length, Target int) int {
 		}
 	}
 	// выход из лупа
-	return -1 //если цифра не найдена возвращает -1 (ошибку)
+	return -1 //если цифра не найдена, возвращает -1 ошибку
 }
 
 func (s *StructOfArr) Sort() {
@@ -39,6 +39,8 @@ func (s *StructOfArr) Sort() {
 	}
 }
 
+// CRUD
+// 1
 func (s *StructOfArr) Add(num int) bool {
 	if s.Length >= s.Cap {
 		return false
@@ -49,6 +51,7 @@ func (s *StructOfArr) Add(num int) bool {
 	return true
 }
 
+// 2
 func (s *StructOfArr) DeleteVal(value int) bool {
 	for i := 0; i < s.Length; i++ {
 		if s.Arr[i] == value {
@@ -62,19 +65,38 @@ func (s *StructOfArr) DeleteVal(value int) bool {
 	return false
 }
 
+// 3
 func (s *StructOfArr) GetSlice() []int {
-	slice := make([]int, s.Length)
+	slice := s.Arr[:s.Length]
 	for i := 0; i < s.Length; i++ {
 		slice[i] = s.Arr[i]
 	}
 	return slice
 }
 
+// 4
 func (s *StructOfArr) Update(index, newVal int) bool {
 	if index < 0 || index >= s.Length {
 		return false
 	}
 
+	if s.Length >= s.Cap {
+		newCap := s.Cap * 2
+		newArr := [ArrCap]int{}
+
+		for i := 0; i < s.Length; i++ {
+			newArr[i] = s.Arr[i]
+		}
+
+		s.Arr = &newArr
+		s.Cap = newCap
+	}
+
 	s.Arr[index] = newVal
 	return true
 }
+
+// нужна логика если массив заполнен то нужно
+// создать новый конструктор который умножит на 2 массив
+// и вернёт скопированный вариант
+//
